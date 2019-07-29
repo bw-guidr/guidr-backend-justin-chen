@@ -14,7 +14,7 @@ server.get('/', (req, res) => {
     res.status(200).json({ api: 'up' });
   });
   
-server.use("/", loginRouter)
+server.use("/user", loginRouter)
 server.use("/trips", tripsRouter)
 
 module.exports = server;

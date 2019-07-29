@@ -45,6 +45,32 @@ router.post("/login", (req, res) => {
     })
 })
 
+router.get("/:id/trips", (req, res) => {
+  const id = req.params.id
+  Users
+  .getUserTrips(id)
+  .then(trips => {
+    res.status(200).json(trips)
+  })
+  .catch(err => {
+    res.status(500).json(err)
+  })
+})
+
+router.post("/:id/trips", (req, res) => {
+  const newTrip = req.body
+  const id = req.params.id
+
+  Users
+  .insert(id, newTrip)
+  .then(trip => {
+    res.status(201).json(trip)
+  })
+  .catch(err => {
+    res.status(500).json(err)
+  })
+})
+
 
 
 function generateToken(user) {

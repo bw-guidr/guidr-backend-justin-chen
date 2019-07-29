@@ -4,7 +4,9 @@ module.exports = {
     find,
     findBy,
     add,
-    findById
+    findById,
+    getUserTrips,
+    insert
     // remove
 };
 
@@ -38,4 +40,18 @@ function findById(id) {
         .select("id", "username")
         .where({ id })
         .first();
+}
+
+function getUserTrips(userId){
+    return db("trips as t")
+    .join("users as u", "u.id", "t.user_id")
+    .select("t.id", "t.id", "t.title", "t.location", "t.miles", "t.description", "t.user_id")
+    .where("t.user_id", userId)
+}
+
+function insert(userId, newTrip){
+    return db("trips as t")
+    .join("users as u", "u.id", "t.user_id")
+    .where("t.user_id", userId)
+    .insert(newTrip)
 }
