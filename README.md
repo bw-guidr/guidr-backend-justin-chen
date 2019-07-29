@@ -24,14 +24,14 @@ Helpful Tip on Testing this Project:
 - [ ] **TEST** this project using **`INSOMNIA`**.
 
 #### Endpoints
-/POST ```/register```
-/POST ```/login```
+- /POST ```/register```
+- /POST ```/login```
 
-/GET ```/trips/all``` to get all trips by all users
-/GET ```/trips/:id``` to get trips by trip id
-/POST ```/trips``` to add a trip
-/PUT ```/trips/:id``` to update a trip by trip id
-/DEL ```/trip/:id``` to delete trip by trip id
+- /GET ```/trips/all``` to get all trips by all users
+- /GET ```/trips/:id``` to get trips by trip id
+- /POST ```/trips``` to add a trip
+- /PUT ```/trips/:id``` to update a trip by trip id
+- /DEL ```/trip/:id``` to delete trip by trip id
 
 #### Database Schemas
 
