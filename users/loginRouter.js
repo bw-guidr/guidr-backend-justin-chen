@@ -1,20 +1,15 @@
-const axios = require('axios');
+const router = require("express").Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 // const express = require("express");
 
-const Users = require("./routes-model.js");
+const Users = require("./login-model.js");
 const secrets = require("./secrets.js")
 
 const { authenticate } = require('../auth/authenticate');
 
-module.exports = server => {
-  server.post('/api/register', register);
-  server.post('/api/login', login);
-  server.get('/api/jokes', authenticate, getJokes);
-};
 
-function register(req, res) {
+router.post("/register", (req, res) => {
   // implement user registration
   let user = req.body
   const hash = bcrypt.hashSync(user.password, 14);
@@ -27,9 +22,9 @@ function register(req, res) {
     .catch(err => {
       res.status(500).json(err)
     })
-}
+})
 
-function login(req, res) {
+router.post("/login", (req, res) => {
   let { username, password } = req.body
 
   Users.findBy({ username })
@@ -51,22 +46,9 @@ function login(req, res) {
       console.log(error)
       res.status(500).json(error)
     })
-}
+})
 
-function getJokes(req, res) {
-  const requestOptions = {
-    headers: { accept: 'application/json' },
-  };
 
-  axios
-    .get('https://icanhazdadjoke.com/search', requestOptions)
-    .then(response => {
-      res.status(200).json(response.data.results);
-    })
-    .catch(err => {
-      res.status(500).json({ message: 'Error Fetching Jokes', error: err });
-    });
-}
 
 function generateToken(user) {
   const jwtPayload = {
@@ -79,3 +61,5 @@ function generateToken(user) {
   };
   return jwt.sign(jwtPayload, secrets.jwtSecret, jwtOptions);
 }
+
+module.exports = router

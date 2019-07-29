@@ -13,7 +13,7 @@ describe("routes", () => {
     describe("POST /register", () => {
         it("should return 201 when posting user", () => {
             return request(server)
-                .post("/api/register")
+                .post("/register")
                 .send({ username: "testing", password: "password" })
                 .then(res => {
                     expect(res.status).toBe(201)
@@ -22,7 +22,7 @@ describe("routes", () => {
 
         it("should return user id number", () => {
             return request(server)
-                .post("/api/register")
+                .post("/register")
                 .send({ username: "testing1", password: "password" })
                 .then(res => {
                     expect(res.body[0]).toEqual(2)
@@ -34,7 +34,7 @@ describe("routes", () => {
     describe("POST /login", () => {
         it("should return 200 when logging in", () => {
             return request(server)
-                .post("/api/login")
+                .post("/login")
                 .send({ username: "testing", password: "password" })
                 .then(res => {
                     expect(res.status).toBe(200)
