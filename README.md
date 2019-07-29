@@ -24,10 +24,15 @@ Helpful Tip on Testing this Project:
 - [ ] **TEST** this project using **`INSOMNIA`**.
 
 #### Endpoints
-- **/POST** ```user/register```
-- **/POST** ```user/login```
-- **/GET** ```user/:id/trips``` to get all trips by userId
+
+User endpoints
+
+- **/POST** ```/user/register```
+- **/POST** ```/user/login```
+- **/GET** ```/user/:id/trips``` to get all trips by userId
 - **/POST** ```/user/:id/trips``` to add a trip to userId
+
+Trips endpoints
 
 - **/GET** ```/trips/all``` to get all trips by all users
 - **/GET** ```/trips/:id``` to get trips by tripId
@@ -47,7 +52,7 @@ The _Database Schemas_ for the `users` and `trips` resources are:
 | username  | string           | required, unique                                    |
 | password  | string           | required                                  |
 
-##### Posts
+##### Trips
 
 | field      | data type        | metadata                                            |
 | -------    | ---------------- | --------------------------------------------------- |
