@@ -4,7 +4,7 @@ module.exports = {
     find,
     findBy,
     add,
-    findById,
+    findById
     // remove
 };
 

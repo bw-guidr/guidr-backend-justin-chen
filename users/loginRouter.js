@@ -6,9 +6,6 @@ const jwt = require("jsonwebtoken");
 const Users = require("./login-model.js");
 const secrets = require("./secrets.js")
 
-const { authenticate } = require('../auth/authenticate');
-
-
 router.post("/register", (req, res) => {
   // implement user registration
   let user = req.body
