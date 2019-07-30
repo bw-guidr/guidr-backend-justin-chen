@@ -16,8 +16,8 @@ router.post("/register", (req, res) => {
   user.password = hash
 
   Users.add(user)
-    .then(saved => {
-      res.status(201).json(saved)
+    .then(savedId => {
+      res.status(201).json(savedId)
     })
     .catch(err => {
       res.status(500).json(err)
@@ -25,7 +25,7 @@ router.post("/register", (req, res) => {
 })
 
 router.post("/login", (req, res) => {
-  let { username, password } = req.body
+  let { username, name, password } = req.body
 
   Users.findBy({ username })
     .then(user => {
@@ -35,7 +35,8 @@ router.post("/login", (req, res) => {
         const token = generateToken(user)
 
         res.status(200).json({
-          message: `Login successful, ${user.username}`,
+          // user,
+          message: `Login successful, ${user.name}`,
           token //res.body = message, token
         })
       } else {

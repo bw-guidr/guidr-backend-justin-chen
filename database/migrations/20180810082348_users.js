@@ -7,6 +7,9 @@ exports.up = function (knex) {
         .string('username', 255)
         .notNullable()
         .unique();
+      users
+        .string("name", 128)
+        .notNullable()
       users.string('password', 255).notNullable();
     })
     .createTable("trips", trips => {
@@ -22,6 +25,8 @@ exports.up = function (knex) {
         .onUpdate('CASCADE');
 
       trips.text("title").notNullable()
+      trips.string("trip_type")
+      trips.string("date").notNullable()
       trips.text("location").notNullable()
       trips.integer("miles").notNullable()
       trips.text("description").notNullable()      

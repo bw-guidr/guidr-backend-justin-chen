@@ -45,7 +45,7 @@ function findById(id) {
 function getUserTrips(userId){
     return db("trips as t")
     .join("users as u", "u.id", "t.user_id")
-    .select("t.id", "t.id", "t.title", "t.location", "t.miles", "t.description", "t.user_id")
+    .select("t.id", "t.id", "t.title", "t.trip_type", "t.date", "t.location", "t.miles", "t.description", "t.user_id")
     .where("t.user_id", userId)
 }
 
