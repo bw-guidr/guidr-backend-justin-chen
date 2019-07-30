@@ -34,7 +34,8 @@ exports.up = function (knex) {
       trips.string("date").notNullable()
       trips.text("location").notNullable()
       trips.float("miles").notNullable()
-      trips.text("description").notNullable()      
+      trips.text("description").notNullable() 
+      trips.string("trip_url")     
     })
 };
 
