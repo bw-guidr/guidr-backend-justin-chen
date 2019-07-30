@@ -56,6 +56,7 @@ The _Database Schemas_ for the `users` and `trips` resources are:
 | tagline         | string           | not required                                        |
 | age             | integer          | not required                                        |
 | length_as_guide | string           | not required                                        |
+| image_url       | string           | not required                                        |
 
 ##### Trips
 
