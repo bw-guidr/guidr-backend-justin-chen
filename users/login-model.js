@@ -29,6 +29,7 @@ function findBy(username) {
 
 function getAllUsers(){
     return db("users")
+        .select("name", "title", "tagline", "age", "length_as_guide")
 }
 
 function add(user) {

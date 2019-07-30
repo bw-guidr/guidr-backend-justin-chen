@@ -12,6 +12,7 @@ exports.up = function (knex) {
         .notNullable()
       users.string('password', 255).notNullable();
       users.integer("age")
+      users.string("length_as_guide")
       users.string("title")
       users.string("tagline")
     })
