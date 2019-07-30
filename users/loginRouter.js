@@ -49,6 +49,17 @@ router.post("/login", (req, res) => {
     })
 })
 
+router.get("/all", (req, res) => {
+  Users
+  .getAllUsers()
+  .then(users => {
+    res.status(200).json(users)
+  })
+  .catch(err => {
+    res.status(500).json(err)
+  })
+})
+
 router.get("/:id/trips", (req, res) => {
   const id = req.params.id
   Users

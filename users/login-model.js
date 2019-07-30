@@ -6,7 +6,8 @@ module.exports = {
     add,
     findById,
     getUserTrips,
-    insert
+    insert,
+    getAllUsers
     // remove
 };
 
@@ -24,6 +25,10 @@ function findBy(username) {
                 return null
             }
         })
+}
+
+function getAllUsers(){
+    return db("users")
 }
 
 function add(user) {
