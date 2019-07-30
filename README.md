@@ -30,6 +30,7 @@ User endpoints
 - **/POST** ```/user/register```
 - **/POST** ```/user/login```
 - **/GET** ```/user/all``` to get all users
+- **/GET** ```/user/:id``` to get user by id
 - **/GET** ```/user/:id/trips``` to get all trips by userId
 - **/POST** ```/user/:id/trips``` to add a trip to userId
 
@@ -68,5 +69,5 @@ The _Database Schemas_ for the `users` and `trips` resources are:
 | trip_type  | string           | not required                                        |
 | date       | string           | required                                            |
 | location   | text             | required                                            |
-| miles      | unsigned integer | required                                            |
+| miles      | float            | required                                            |
 | description| text             | required                                            |

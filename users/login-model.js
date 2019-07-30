@@ -8,7 +8,6 @@ module.exports = {
     getUserTrips,
     insert,
     getAllUsers
-    // remove
 };
 
 function find() {
