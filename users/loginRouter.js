@@ -12,16 +12,23 @@ const { authenticate } = require('../auth/authenticate');
 router.post("/register", (req, res) => {
   // implement user registration
   let user = req.body
-  const hash = bcrypt.hashSync(user.password, 14);
-  user.password = hash
 
-  Users.add(user)
-    .then(user => {
-      res.status(201).json(user)
+  if (user.username.length > 0 && user.password.length >= 5) {
+    const hash = bcrypt.hashSync(user.password, 14);
+    user.password = hash
+
+    Users.add(user)
+      .then(user => {
+        res.status(201).json(user)
+      })
+      .catch(err => {
+        res.status(500).json(err)
+      })
+  } else {
+    res.status(400).json({
+      message: "Username can't be blank and Password must be 5 or more characters"
     })
-    .catch(err => {
-      res.status(500).json(err)
-    })
+  }
 })
 
 router.post("/login", (req, res) => {
@@ -35,9 +42,9 @@ router.post("/login", (req, res) => {
         const token = generateToken(user)
 
         res.status(200).json({
-          user, 
+          user,
           message: `Login successful, ${user.name}`,
-          token 
+          token
         })
       } else {
         res.status(401).json({ message: "Username and Password incorrect" })
@@ -51,38 +58,38 @@ router.post("/login", (req, res) => {
 
 router.get("/all", (req, res) => {
   Users
-  .getAllUsers()
-  .then(users => {
-    res.status(200).json(users)
-  })
-  .catch(err => {
-    res.status(500).json(err)
-  })
+    .getAllUsers()
+    .then(users => {
+      res.status(200).json(users)
+    })
+    .catch(err => {
+      res.status(500).json(err)
+    })
 })
 
 router.get("/:id", (req, res) => {
   const id = req.params.id
-  
+
   Users
-  .findById(id)
-  .then(user => {
-    res.status(200).json(user)
-  })
-  .catch(err => {
-    res.status(500).json(err)
-  })
+    .findById(id)
+    .then(user => {
+      res.status(200).json(user)
+    })
+    .catch(err => {
+      res.status(500).json(err)
+    })
 })
 
 router.get("/:id/trips", (req, res) => {
   const id = req.params.id
   Users
-  .getUserTrips(id)
-  .then(trips => {
-    res.status(200).json(trips)
-  })
-  .catch(err => {
-    res.status(500).json(err)
-  })
+    .getUserTrips(id)
+    .then(trips => {
+      res.status(200).json(trips)
+    })
+    .catch(err => {
+      res.status(500).json(err)
+    })
 })
 
 router.post("/:id/trips", authenticate, (req, res) => {
@@ -90,13 +97,13 @@ router.post("/:id/trips", authenticate, (req, res) => {
   const id = req.params.id
 
   Users
-  .insert(id, newTrip)
-  .then(trip => {
-    res.status(201).json(trip)
-  })
-  .catch(err => {
-    res.status(500).json(err)
-  })
+    .insert(id, newTrip)
+    .then(trip => {
+      res.status(201).json(trip)
+    })
+    .catch(err => {
+      res.status(500).json(err)
+    })
 })
 
 
