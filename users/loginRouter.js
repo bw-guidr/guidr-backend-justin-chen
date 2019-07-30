@@ -35,9 +35,9 @@ router.post("/login", (req, res) => {
         const token = generateToken(user)
 
         res.status(200).json({
-          // user,
+          id: `${user.id}`, 
           message: `Login successful, ${user.name}`,
-          token //res.body = message, token
+          token 
         })
       } else {
         res.status(401).json({ message: "Username and Password incorrect" })
