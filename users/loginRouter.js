@@ -16,8 +16,8 @@ router.post("/register", (req, res) => {
   user.password = hash
 
   Users.add(user)
-    .then(savedId => {
-      res.status(201).json(savedId)
+    .then(user => {
+      res.status(201).json(user)
     })
     .catch(err => {
       res.status(500).json(err)
@@ -35,7 +35,7 @@ router.post("/login", (req, res) => {
         const token = generateToken(user)
 
         res.status(200).json({
-          id: `${user.id}`, 
+          user, 
           message: `Login successful, ${user.name}`,
           token 
         })
