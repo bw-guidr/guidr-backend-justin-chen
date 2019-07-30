@@ -29,7 +29,7 @@ function findBy(username) {
 
 function getAllUsers(){
     return db("users")
-        .select("name", "title", "tagline", "age", "length_as_guide")
+        .select("name", "title", "tagline", "age", "length_as_guide", "image_url")
 }
 
 function add(user) {
@@ -51,7 +51,7 @@ function findById(id) {
 function getUserTrips(userId){
     return db("trips as t")
     .join("users as u", "u.id", "t.user_id")
-    .select("t.id", "t.id", "t.title", "t.trip_type", "t.date", "t.location", "t.miles", "t.description", "t.user_id")
+    .select("t.id", "t.id", "t.title", "t.trip_type", "t.date", "t.location", "t.miles", "t.description", "t.user_id", "u.image_url")
     .where("t.user_id", userId)
 }
 

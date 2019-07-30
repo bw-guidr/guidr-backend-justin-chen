@@ -15,6 +15,7 @@ exports.up = function (knex) {
       users.string("length_as_guide")
       users.string("title")
       users.string("tagline")
+      users.string("image_url")
     })
     .createTable("trips", trips => {
       trips.increments();
