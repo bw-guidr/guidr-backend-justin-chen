@@ -43,7 +43,7 @@ function add(user) {
 
 function findById(id) {
     return db("users")
-        .select("id", "username", "name")
+        .select("id", "username", "name", "title", "tagline", "age", "length_as_guide", "image_url")
         .where({ id })
         .first();
 }

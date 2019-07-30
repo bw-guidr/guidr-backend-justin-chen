@@ -60,6 +60,19 @@ router.get("/all", (req, res) => {
   })
 })
 
+router.get("/:id", (req, res) => {
+  const id = req.params.id
+  
+  Users
+  .findById(id)
+  .then(user => {
+    res.status(200).json(user)
+  })
+  .catch(err => {
+    res.status(500).json(err)
+  })
+})
+
 router.get("/:id/trips", (req, res) => {
   const id = req.params.id
   Users
