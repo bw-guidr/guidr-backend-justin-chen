@@ -35,8 +35,8 @@ router.get('/:id', validateTripId, (req, res) => {
 
     dbTrips
     .getById(id)
-    .then(post => {
-        res.status(200).json(post)
+    .then(trip => {
+        res.status(200).json(trip)
     })
     .catch(error => {
         res.status(500).json(error)
@@ -57,13 +57,13 @@ router.delete('/:id', authenticate, (req, res) => {
 });
 
 router.put('/:id', authenticate, validateTripId, (req, res) => {
-    const post = req.body
+    const trip = req.body
     const id = req.params.id
 
     dbTrips
-    .update(id, post)
-    .then(post => {
-        res.status(200).json(post)
+    .update(id, trip)
+    .then(trip => {
+        res.status(200).json(trip)
     })
     .catch(error => {
         res.status(500).json(error)
@@ -77,8 +77,8 @@ function validateTripId(req, res, next) {
 
     dbTrips
     .getById(id)
-    .then(post => {
-        if(!post){
+    .then(trip => {
+        if(!trip){
             res.status(404).json( {error: "ID not found" } )
         } else {
             next();
